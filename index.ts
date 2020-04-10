@@ -1,1 +1,3 @@
-export default './src/connection';
+import ConnectionDirective from './src/connection';
+
+export default ConnectionDirective;

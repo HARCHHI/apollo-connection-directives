@@ -1,20 +1,24 @@
 {
   "name": "apollo-connection-directives",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple relay connection directive for Apollo.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "prepublish": "tsc",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "predeploy": "npm run build",
+    "deploy": "cd dist && npm publish"
   },
-  "keywords": ["Apollo", "GraphQL", "Relay Connection"],
+  "keywords": [
+    "Apollo",
+    "GraphQL",
+    "Relay Connection"
+  ],
   "author": "HARCHHI",
   "license": "MIT",
   "dependencies": {
     "apollo-server": "^2.12.0",
-    "graphql": "^15.0.0"
+    "graphql": "^14.6.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.27.0",
