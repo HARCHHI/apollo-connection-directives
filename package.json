@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "predeploy": "npm run build",
-    "deploy": "cd dist && npm publish"
+    "deploy": "npm publish"
   },
   "keywords": [
     "Apollo",
