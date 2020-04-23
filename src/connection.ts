@@ -121,11 +121,12 @@ export default class Connection extends SchemaDirectiveVisitor {
     const { key, name = 'cursor' } = this.args;
 
     field = injectArgs(field);
-    field.resolve = async (_: any, params: any, context: any, info: GraphQLResolveInfo) => {
+    field.resolve = async (parent: any, params: any, context: any, info: GraphQLResolveInfo) => {
       let datas;
 
-      if (resolve) {
-        datas = await resolve(_, params, context, info);
+      if (parent[field.name] !== undefined) datas = parent[field.name];
+      else if (resolve) {
+        datas = await resolve(parent, params, context, info);
       }
 
       const {

@@ -1,10 +1,12 @@
 {
   "name": "apollo-connection-directives",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Simple relay connection directive for Apollo.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "predeploy": "npm run build",
