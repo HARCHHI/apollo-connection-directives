@@ -124,10 +124,8 @@ export default class Connection extends SchemaDirectiveVisitor {
     field.resolve = async (parent: any, params: any, context: any, info: GraphQLResolveInfo) => {
       let datas;
 
-      if (parent[field.name] !== undefined) datas = parent[field.name];
-      else if (resolve) {
-        datas = await resolve(parent, params, context, info);
-      }
+      if (parent !== undefined && parent[field.name] !== undefined) datas = parent[field.name];
+      if (resolve) datas = await resolve(parent, params, context, info);
 
       const {
         first = 0, after = null,
