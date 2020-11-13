@@ -65,14 +65,22 @@ export function applyCursors(
   };
 }
 
-export function paging(datas: Array<any>, keyOption: CursorKeyOption, options: PaginationOption) {
+export function paging(datas: Array<any> | { __typename: string, data: Array<any> }, keyOption: CursorKeyOption, options: PaginationOption) {
   const {
     first,
     after,
     last,
     before,
   } = options;
-  const result: EdgeInfo = applyCursors(datas, keyOption, { after, before });
+  let data = datas;
+  let __typename;
+
+  if (Array.isArray(datas) === false) {
+    __typename = (datas as { __typename: string, data: Array<any> }).__typename;
+    data = (datas as { __typename: string, data: Array<any> }).data;
+
+  }
+  const result: EdgeInfo = applyCursors((data as Array<any>), keyOption, { after, before });
   const { firstCursor, endCursor } = result;
   let { edges } = result;
   let hasPreviousPage: boolean = false;
@@ -86,6 +94,7 @@ export function paging(datas: Array<any>, keyOption: CursorKeyOption, options: P
   if (edges.length !== 0 && endCursor !== edges[edges.length - 1].cursor) hasNextPage = true;
 
   return {
+    __typename,
     edges,
     pageInfo: { hasNextPage, hasPreviousPage },
   };

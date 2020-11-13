@@ -1,6 +1,6 @@
 {
   "name": "apollo-connection-directives",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "description": "Simple relay connection directive for Apollo.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
